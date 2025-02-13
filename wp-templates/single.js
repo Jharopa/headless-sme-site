@@ -9,10 +9,10 @@ export default function Component(props) {
     return <>Loading...</>;
   }
 
-  const { title: siteTitle, description: siteDescription } =
-    props.data.generalSettings;
+  const siteTitle = props.data.generalSettings.title;
   const menuItems = props.data.primaryMenuItems.nodes;
   const { title, content, date, author } = props.data.post;
+  const logo = props.data.mediaItems.nodes[0]
 
   return (
     <>
@@ -21,9 +21,8 @@ export default function Component(props) {
       </Head>
 
       <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
         menuItems={menuItems}
+        logo={logo}
       />
 
       <main className="container">
@@ -55,6 +54,9 @@ Component.query = gql`
           name
         }
       }
+    }
+    generalSettings {
+      title
     }
     ...HeaderFragment
   }
