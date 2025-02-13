@@ -10,7 +10,8 @@ export default function Component(props) {
   const { title: siteTitle, description: siteDescription } =
     props.data.generalSettings;
   const menuItems = props.data.primaryMenuItems.nodes;
-
+  const logo = props.data.mediaItems.nodes[0]
+  
   return (
     <>
       <Head>
@@ -18,9 +19,8 @@ export default function Component(props) {
       </Head>
 
       <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
         menuItems={menuItems}
+        logo={logo}
       />
 
       <main className="container">
@@ -84,5 +84,9 @@ Component.query = gql`
   ${Header.fragments.entry}
   query GetHomePage {
     ...HeaderFragment
+    generalSettings {
+      title
+      description
+    }
   }
 `;

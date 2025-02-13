@@ -1,16 +1,20 @@
 import { gql } from "@apollo/client";
 import Link from "next/link";
+import Image from "next/image";
 import style from "./header.module.css";
 
-export default function Header({ siteTitle, siteDescription, menuItems }) {
+export default function Header({ menuItems, logo }) {
   return (
     <header className={style.header}>
       <div className="container">
         <Link href="/" className={style.brand}>
-          <h2 className={style.siteTitle}>{siteTitle}</h2>
-          <p className={style.siteDescription}>{siteDescription}</p>
+          <Image 
+            src={logo.mediaItemUrl} 
+            width="64"
+            height="64"
+            alt="Site logo"
+          />
         </Link>
-
         <nav className={style.nav}>
           <ul>
             {menuItems.map((item) => (
@@ -28,10 +32,6 @@ export default function Header({ siteTitle, siteDescription, menuItems }) {
 Header.fragments = {
   entry: gql`
     fragment HeaderFragment on RootQuery {
-      generalSettings {
-        title
-        description
-      }
       primaryMenuItems: menuItems(where: { location: PRIMARY }) {
         nodes {
           id
@@ -44,6 +44,15 @@ Header.fragments = {
             node {
               name
             }
+          }
+        }
+      }
+      mediaItems(where: {name: "logo"}) {
+        nodes {
+          mediaItemUrl
+          mediaDetails {
+            height
+            width
           }
         }
       }

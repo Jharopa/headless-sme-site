@@ -11,8 +11,10 @@ export default function Preview({ title, uri, content, featuredImage}) {
           height={150}
           alt={featuredImage.altText}
         />
-        <h2>{title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div>
+          <h2>{title}</h2>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </div>
       </Link>
     </div>
   );

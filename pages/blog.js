@@ -1,7 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import Head from "next/head";
 import Header from "../components/header";
-import EntryHeader from "../components/entry-header";
 import Footer from "../components/footer";
 import { getNextStaticProps } from "@faustwp/core";
 import Preview from "../components/preview";
@@ -9,8 +8,8 @@ import Preview from "../components/preview";
 export default function Blog() {
   const { data } = useQuery(Blog.query);
 
-  const { title: siteTitle, description: siteDescription } = data.generalSettings;
   const menuItems = data.primaryMenuItems.nodes;
+  const logo = data.mediaItems.nodes[0]
   const posts = data.posts.nodes;
 
   return (
@@ -20,8 +19,7 @@ export default function Blog() {
       </Head>
 
       <Header
-        siteTitle={siteTitle}
-        siteDescription={siteDescription}
+        logo={logo}
         menuItems={menuItems}
       />
       
