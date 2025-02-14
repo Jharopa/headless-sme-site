@@ -1,15 +1,15 @@
-import { gql } from "@apollo/client";
-import Link from "next/link";
-import Image from "next/image";
-import style from "./header.module.css";
+import { gql } from '@apollo/client';
+import Link from 'next/link';
+import Image from 'next/image';
+import style from './header.module.css';
 
 export default function Header({ menuItems, logo }) {
   return (
     <header className={style.header}>
       <div className="container">
         <Link href="/" className={style.brand}>
-          <Image 
-            src={logo.mediaItemUrl} 
+          <Image
+            src={logo.mediaItemUrl}
             width="64"
             height="64"
             alt="Site logo"
@@ -47,7 +47,7 @@ Header.fragments = {
           }
         }
       }
-      mediaItems(where: {name: "logo"}) {
+      mediaItems(where: { name: "logo" }) {
         nodes {
           mediaItemUrl
           mediaDetails {
@@ -57,5 +57,5 @@ Header.fragments = {
         }
       }
     }
-  `,
+  `
 };

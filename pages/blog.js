@@ -1,15 +1,16 @@
-import { gql, useQuery } from "@apollo/client";
-import Head from "next/head";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import { getNextStaticProps } from "@faustwp/core";
-import Preview from "../components/preview";
+import { gql, useQuery } from '@apollo/client';
+import Head from 'next/head';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import { getNextStaticProps } from '@faustwp/core';
+import Preview from '../components/preview';
+import style from '../styles/blog.module.css';
 
 export default function Blog() {
   const { data } = useQuery(Blog.query);
 
   const menuItems = data.primaryMenuItems.nodes;
-  const logo = data.mediaItems.nodes[0]
+  const logo = data.mediaItems.nodes[0];
   const posts = data.posts.nodes;
 
   return (
@@ -18,18 +19,15 @@ export default function Blog() {
         <title>Blog</title>
       </Head>
 
-      <Header
-        logo={logo}
-        menuItems={menuItems}
-      />
-      
-      <main className="container">
+      <Header logo={logo} menuItems={menuItems} />
+
+      <main className={style.posts}>
         {posts.map((post) => (
-          <Preview key={post.id}
-          title={post.title}
-          uri={post.uri}
-          content={post.content}
-          featuredImage={post.featuredImage.node}
+          <Preview
+            key={post.id}
+            title={post.title}
+            uri={post.uri}
+            featuredImage={post.featuredImage.node}
           />
         ))}
       </main>
@@ -49,11 +47,10 @@ Blog.query = gql`
         title
         featuredImage {
           node {
-            sourceUrl(size: THUMBNAIL)
+            sourceUrl
             altText
           }
         }
-        content
         id
       }
     }
@@ -62,6 +59,6 @@ Blog.query = gql`
 
 export function getStaticProps(ctx) {
   return getNextStaticProps(ctx, {
-    Page: Blog,
+    Page: Blog
   });
 }

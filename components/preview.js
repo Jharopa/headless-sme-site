@@ -1,21 +1,18 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
+import style from './preview.module.css';
 
-export default function Preview({ title, uri, content, featuredImage}) {
-  return(
-    <div>
-      <Link href={uri}>
-        <Image 
-          src={featuredImage.sourceUrl} 
-          width={150}
-          height={150}
-          alt={featuredImage.altText}
-        />
-        <div>
-          <h2>{title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-        </div>
-      </Link>
-    </div>
+export default function Preview({ title, uri, featuredImage }) {
+  return (
+    <Link href={uri} className={style.preview}>
+      <Image
+        className={style.previewImage}
+        src={featuredImage.sourceUrl}
+        width={300}
+        height={200}
+        alt={featuredImage.altText}
+      />
+      <h2>{title}</h2>
+    </Link>
   );
 }
