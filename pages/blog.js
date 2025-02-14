@@ -8,9 +8,8 @@ import style from '../styles/blog.module.css';
 
 export default function Blog() {
   const { data } = useQuery(Blog.query);
-
   const menuItems = data.primaryMenuItems.nodes;
-  const logo = data.mediaItems.nodes[0];
+  const siteTitle = data.generalSettings.title;
   const posts = data.posts.nodes;
 
   return (
@@ -19,7 +18,7 @@ export default function Blog() {
         <title>Blog</title>
       </Head>
 
-      <Header logo={logo} menuItems={menuItems} />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className={style.posts}>
         {posts.map((post) => (

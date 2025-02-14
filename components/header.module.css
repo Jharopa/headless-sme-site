@@ -2,14 +2,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 2rem;
   margin-bottom: 4rem;
+  padding-right: 6rem;
+  padding-left: 6rem;
+  color: whitesmoke;
+  background: rgb(6, 6, 83);
+  background: linear-gradient(
+    90deg,
+    rgba(6, 6, 83, 1) 0%,
+    rgba(0, 0, 0, 1) 50%,
+    rgba(6, 6, 83, 1) 100%
+  );
 }
 
 .siteTitle {
   font-size: 2rem;
-  margin: 0;
-  margin-bottom: 0.5rem;
+  margin: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .siteDescription {
@@ -24,11 +33,23 @@
   padding: 0;
 }
 
-.nav ul li {
-  margin-right: 1rem;
-  font-size: 1.25rem;
+.nav ul:last-child {
+  margin-right: 0;
 }
 
-.nav ul li:last-child {
-  margin-right: 0;
+.nav ul li {
+  margin-right: 2rem;
+  font-size: 1.25rem;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 0.25rem;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.nav ul li:hover {
+  border-bottom: 2px solid;
+  border-color: whitesmoke;
+  padding-bottom: 0.25rem;
+  padding-right: 0;
+  padding-left: 0;
 }

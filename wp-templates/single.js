@@ -1,8 +1,8 @@
-import { gql } from "@apollo/client";
-import Head from "next/head";
-import EntryHeader from "../components/entry-header";
-import Footer from "../components/footer";
-import Header from "../components/header";
+import { gql } from '@apollo/client';
+import Head from 'next/head';
+import EntryHeader from '../components/entry-header';
+import Footer from '../components/footer';
+import Header from '../components/header';
 export default function Component(props) {
   // Loading state for previews
   if (props.loading) {
@@ -12,7 +12,6 @@ export default function Component(props) {
   const siteTitle = props.data.generalSettings.title;
   const menuItems = props.data.primaryMenuItems.nodes;
   const { title, content, date, author } = props.data.post;
-  const logo = props.data.mediaItems.nodes[0]
 
   return (
     <>
@@ -20,10 +19,7 @@ export default function Component(props) {
         <title>{`${title} - ${siteTitle}`}</title>
       </Head>
 
-      <Header
-        menuItems={menuItems}
-        logo={logo}
-      />
+      <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
         <EntryHeader title={title} date={date} author={author.node.name} />
@@ -38,7 +34,7 @@ export default function Component(props) {
 Component.variables = ({ databaseId }, ctx) => {
   return {
     databaseId,
-    asPreview: ctx?.asPreview,
+    asPreview: ctx?.asPreview
   };
 };
 
@@ -54,9 +50,6 @@ Component.query = gql`
           name
         }
       }
-    }
-    generalSettings {
-      title
     }
     ...HeaderFragment
   }
