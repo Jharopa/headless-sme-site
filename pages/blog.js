@@ -27,6 +27,8 @@ export default function Blog() {
             title={post.title}
             uri={post.uri}
             featuredImage={post.featuredImage.node}
+            author={post.author.node.name}
+            readTime={getReadTime(post.content)}
           />
         ))}
       </main>
@@ -44,6 +46,7 @@ Blog.query = gql`
       nodes {
         uri
         title
+        content
         featuredImage {
           node {
             sourceUrl
@@ -51,10 +54,28 @@ Blog.query = gql`
           }
         }
         id
+        author {
+          node {
+            name
+          }
+        }
       }
     }
   }
 `;
+
+function getWordCount(content) {
+  return content
+    .replace(/<[^>]+>/g, '')
+    .trim()
+    .split(/\s+/).length;
+}
+
+function getReadTime(content) {
+  var wordCount = getWordCount(content);
+  var readTime = wordCount / 250;
+  return readTime < 1 ? '< 1 min' : Math.round(readTime) + ' min';
+}
 
 export function getStaticProps(ctx) {
   return getNextStaticProps(ctx, {

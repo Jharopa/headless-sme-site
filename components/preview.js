@@ -2,7 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import style from './preview.module.css';
 
-export default function Preview({ title, uri, featuredImage }) {
+export default function Preview({
+  title,
+  uri,
+  featuredImage,
+  author,
+  readTime
+}) {
   return (
     <Link href={uri} className={style.preview}>
       <Image
@@ -12,7 +18,14 @@ export default function Preview({ title, uri, featuredImage }) {
         height={200}
         alt={featuredImage.altText}
       />
-      <h2>{title}</h2>
+      <div className={style.previewContent}>
+        <h2>{title}</h2>
+        {author && readTime && (
+          <div>
+            By {author} | {readTime} read
+          </div>
+        )}
+      </div>
     </Link>
   );
 }
