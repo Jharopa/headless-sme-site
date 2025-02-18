@@ -1,8 +1,9 @@
 import { gql, useQuery } from '@apollo/client';
+import { getNextStaticProps } from '@faustwp/core';
 import Head from 'next/head';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import { getNextStaticProps } from '@faustwp/core';
+import EntryHeader from '../components/entry-header';
 import Preview from '../components/preview';
 import style from '../styles/blog.module.css';
 
@@ -20,17 +21,20 @@ export default function Blog() {
 
       <Header siteTitle={siteTitle} menuItems={menuItems} />
 
-      <main className={style.posts}>
-        {posts.map((post) => (
-          <Preview
-            key={post.id}
-            title={post.title}
-            uri={post.uri}
-            featuredImage={post.featuredImage.node}
-            author={post.author.node.name}
-            readTime={getReadTime(post.content)}
-          />
-        ))}
+      <main className="container">
+        <EntryHeader title="Posts" />
+        <div className={style.posts}>
+          {posts.map((post) => (
+            <Preview
+              key={post.id}
+              title={post.title}
+              uri={post.uri}
+              featuredImage={post.featuredImage.node}
+              author={post.author.node.name}
+              readTime={getReadTime(post.content)}
+            />
+          ))}
+        </div>
       </main>
 
       <Footer />

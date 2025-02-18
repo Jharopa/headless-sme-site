@@ -3,6 +3,7 @@ import { getNextStaticProps } from '@faustwp/core';
 import Head from 'next/head';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import EntryHeader from '../components/entry-header';
 import Gallery from '../components/gallery';
 
 export default function Photos() {
@@ -21,6 +22,7 @@ export default function Photos() {
       <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
+        <EntryHeader title="Gallery" />
         <Gallery mediaItems={mediaItems} />
       </main>
 
