@@ -5,7 +5,6 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import EntryHeader from '../components/entry-header';
 import Posts from '../components/posts';
-import style from '../styles/blog.module.css';
 
 export default function Blog() {
   const { data } = useQuery(Blog.query);
