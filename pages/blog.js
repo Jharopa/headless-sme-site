@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import EntryHeader from '../components/entry-header';
-import Preview from '../components/preview';
+import Posts from '../components/posts';
 import style from '../styles/blog.module.css';
 
 export default function Blog() {
@@ -23,18 +23,7 @@ export default function Blog() {
 
       <main className="container">
         <EntryHeader title="Posts" />
-        <div className={style.posts}>
-          {posts.map((post) => (
-            <Preview
-              key={post.id}
-              title={post.title}
-              uri={post.uri}
-              featuredImage={post.featuredImage.node}
-              author={post.author.node.name}
-              readTime={getReadTime(post.content)}
-            />
-          ))}
-        </div>
+        <Posts posts={posts} />
       </main>
 
       <Footer />
@@ -67,19 +56,6 @@ Blog.query = gql`
     }
   }
 `;
-
-function getWordCount(content) {
-  return content
-    .replace(/<[^>]+>/g, '')
-    .trim()
-    .split(/\s+/).length;
-}
-
-function getReadTime(content) {
-  var wordCount = getWordCount(content);
-  var readTime = wordCount / 250;
-  return readTime < 1 ? '< 1 min' : Math.round(readTime) + ' min';
-}
 
 export function getStaticProps(ctx) {
   return getNextStaticProps(ctx, {

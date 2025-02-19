@@ -1,9 +1,0 @@
-.posts {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 3rem;
-  row-gap: 3rem;
-  margin-bottom: 6rem;
-  margin-left: auto;
-  margin-right: auto;
-}
