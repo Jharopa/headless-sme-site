@@ -23,7 +23,7 @@ export default function Component(props) {
 
       <main className="container">
         <EntryHeader
-          title="Welcome to the Pawsitively Adorable"
+          title="Welcome to the Pawsitively Adorable - This is on the preview branch!"
           tagline={siteDescription}
         />
         <h2>Recent Posts</h2>
