@@ -5,10 +5,12 @@ export class GQLEndpointPlugin {
    * @param {FaustHooks} hooks
    */
   apply(hooks) {
-    const { _, addFilter } = hooks;
+    const { addAction, addFilter } = hooks;
 
-    addFilter('graphqlEndpoint', 'my-namespace', (graphqlEndpoint, context) => {
-      return 'sadge';
-    });
+    addFilter(
+      'graphqlEndpoint',
+      'faust',
+      (graphqlEndpoint, context) => `${context.wpUrl}/sadge`
+    );
   }
 }
