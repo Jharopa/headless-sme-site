@@ -2,10 +2,10 @@
   "name": "@faustwp/faust-scaffold",
   "private": true,
   "scripts": {
-    "dev": "faust dev",
-    "build": "faust build",
+    "dev": "faust dev --skip-health-checks",
+    "build": "faust build --skip-health-checks",
     "generate": "faust generatePossibleTypes",
-    "start": "faust start",
+    "start": "faust start --skip-health-checks",
     "lint": "faust lint"
   },
   "dependencies": {
