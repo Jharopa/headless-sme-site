@@ -7,6 +7,6 @@ import { GQLEndpointPlugin } from './plugins/graphql-endpoint';
  **/
 export default setConfig({
   templates,
-  plugins: [new GQLEndpointPlugin()],
+  plugins: [],
   possibleTypes
 });

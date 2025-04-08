@@ -5,14 +5,17 @@ import EntryHeader from '../components/entry-header';
 import Footer from '../components/footer';
 import Posts from '../components/posts';
 import Gallery from '../components/gallery';
+import { headers } from 'next/headers';
 
-export default function Component(props) {
+export default async function Component(props) {
   const { title: siteTitle, description: siteDescription } =
     props.data.generalSettings;
   const menuItems = props.data.primaryMenuItems.nodes;
   const posts = props.data.posts.nodes;
   const mediaItems = props.data.mediaItems.nodes;
 
+  const country = await headers().get('wpe-headless-country');
+  const welcome_message = `Welcome to the Pawsitively Adorable - We see you are from ${country}!`;
   return (
     <>
       <Head>
@@ -22,10 +25,7 @@ export default function Component(props) {
       <Header siteTitle={siteTitle} menuItems={menuItems} />
 
       <main className="container">
-        <EntryHeader
-          title="Welcome to the Pawsitively Adorable - This is on the preview branch!"
-          tagline={siteDescription}
-        />
+        <EntryHeader title={welcome_message} tagline={siteDescription} />
         <h2>Recent Posts</h2>
         <Posts posts={posts} />
 
